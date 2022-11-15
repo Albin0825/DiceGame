@@ -345,7 +345,7 @@ function gameLoop() {
                 ctx.fillText(enemy.dialogueCount + "/5 questions", canvas.width * 0.15, canvas.height * 0.15);
             }
             ctxSettings({ textAlign: "right" });
-            ctx.fillText("Charm: " + enemy.charmPoints + "/" + enemy.requiredPoints, canvas.width * 0.85, canvas.height * 0.15);
+            ctx.fillText("Charm: " + Math.round(enemy.charmPoints) + "/" + enemy.requiredPoints, canvas.width * 0.85, canvas.height * 0.15);
 
             if (showDialogueOptions) {
                 let m = canvas.width / 2;
@@ -386,9 +386,9 @@ function gameLoop() {
                 if (diceRoll && diceRoll.doneRolling && mouse.click) {
                     if (diceRoll.finalResult >= option.minimumSum) {
                         enemy.charmPoints += option.successPoints;
-                        dialogueBox.startDialogue(option.positiveResponse);
+                        dialogueBox.startDialogue(enemy.dialogueOptions.pos);
                     } else {
-                        dialogueBox.startDialogue(option.negativeResponse);
+                        dialogueBox.startDialogue(enemy.dialogueOptions.neg);
                     }
                     //==================================================
                     // Removes the last question so the new question can pop up
@@ -670,7 +670,7 @@ function gameLoop() {
             
             ctxSettings({fillStyle:"#eee",font:"24px Sketchy",textAlign:"right"});
             if(diceButtons[5].clicked){
-                ctx.fillText("Your HP: "+player.hp+"/"+player.maxHp, canvas.width*0.8, canvas.height*0.535);
+                ctx.fillText("Your HP: "+player.hp+"/"+player.maxHp, canvas.width*0.8, (canvas.height*0.585)-50);
             }else{
                 ctx.fillText("Your HP: "+player.hp+"/"+player.maxHp, canvas.width*0.8, canvas.height*0.585);
             }

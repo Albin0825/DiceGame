@@ -15,7 +15,7 @@ class Enemy{
 
         this.dialogueCount = 0;
         this.charmPoints = 0;
-        this.requiredPoints = 8;
+        this.requiredPoints = 100;
     }
 
     takeDmg(dmg){
